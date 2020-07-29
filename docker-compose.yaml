@@ -1,0 +1,14 @@
+version: "2.4"
+services:  
+
+  nats:
+    image: nats-streaming
+    container_name: nats
+    hostname: vsblty-nats-server
+    volumes: 
+      - ./nats-logs:/nlogs
+      - ./docker-config:/config
+    ports:
+      - "4222:4222"
+      - "8223:8223"
+    command: ["-m", "8223", "-c", "/config/stan.conf"]
